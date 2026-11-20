@@ -2,7 +2,7 @@
 
 Extracts payment instructions from client emails (exported to CSV) into a structured payment table, using OpenRouter for the LLM call, Pydantic for validation, and pandas for I/O. Each row in the output is one payment.
 
-The extracted account details are meant to be checked later against our own records, to see whether an account is new or recognised.
+The extracted account details are checked against our own records in Stage 2 (hold/release check, described at the end), to decide which payments can go through and which must be held for a call-back.
 
 ## Files
 
@@ -23,7 +23,7 @@ Put your settings in a `.env` file next to the script (and keep `.env` out of gi
 
 ```
 OPENROUTER_API_KEY=sk-or-...
-OPENROUTER_MODEL=`~deepseek/deepseek-v4-flash-latest` due to free model rate-limits
+OPENROUTER_MODEL=<an OpenRouter model slug>
 ```
 
 Then:
@@ -120,3 +120,95 @@ The run reports four hard-case categories: 3 emails with no payment date, 75 for
 - **Shared accounts across payees.** EM-00012 (Crescent Linen Services) and EM-00025 (Willamette Hop Farms) give the same new account (6655-220-1193) and the same prior account (1120-443-8876) for two different payees. This is worth a manual check.
 - **Multiple payments (2 emails).** EM-00021 and EM-00291 each contain two payments (Caleb Ruthven Consulting and Dataform Labs) and produce two rows each. The same two accounts appear in both emails.
 
+### Limitations
+
+`ok` means the model returned valid structured data, not that every value was checked against the email text. Only the printed spot-check rows have been reviewed by hand, so the remaining rows should be sampled before the table is relied on for payment checks.
+
+
+---
+
+# Stage 2: Hold/release check
+
+Marks every extracted payment row `ready` or `held` using Python, pandas and Great Expectations. Only a payment to the verified account on file may go through without a call-back.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `hold_release_check.py` | The check |
+| `payments_decisions.csv` | Every payment row, plus the on-file account, currency and call-back contact, `decision`, and `hold_reasons` |
+| `ge_validation_result.json` | The Great Expectations validation result |
+| `data/Client Settlement Accounts on File.xlsx` | The 30 verified settlement accounts |
+
+## How to run
+
+```bash
+pip install pandas openpyxl great_expectations
+python hold_release_check.py --diagnose-only     # join-key and leading-zero checks, then stop
+python hold_release_check.py --join-key id       # full run
+```
+
+Without `--join-key` the script chooses ID or name automatically, and stops instead of guessing if neither links the two files reliably.
+
+## Rules
+
+No account on file has been verified since September 2026, so an email cannot verify a bank change. Any account that differs from the file is an unverified change and is held for a call-back.
+
+A row is `ready` only if all of these hold:
+
+1. The extraction status is `ok` and an account number is present.
+2. The client exists in the accounts-on-file sheet.
+3. The email's account equals the account on file, after cleaning both sides the same way (strip spaces and dashes, uppercase, keep as text).
+4. The currency equals the account currency on file.
+5. If a sort code arrived separately and the file holds a UK IBAN, the sort code plus account number agree with that IBAN.
+6. The row is not flagged as an account change (no prior account).
+
+Every other row is `held`. Each payment is judged on its own row, a missing payment date is not a reason to hold, and a prior account never makes a new account trusted.
+
+## How it is built
+
+Each rule is an expectation in a Great Expectations suite (`payment_release_contract`), run on the payments joined to the on-file accounts. The rows that fail an expectation get that rule's code in `hold_reasons`; a row with no failures is `ready`.
+
+| Code | Meaning |
+|---|---|
+| `NOT_OK_STATUS` | Extraction status is not `ok` |
+| `MISSING_ACCOUNT` | No account number extracted |
+| `CLIENT_NOT_ON_FILE` | Client ID not in the accounts sheet |
+| `ACCOUNT_MISMATCH` | Account differs from the one on file |
+| `CURRENCY_MISMATCH` | Currency differs from the account currency on file |
+| `SORT_CODE_MISMATCH` | Sort code disagrees with the IBAN on file, or one was sent but there is nothing on file to check it against |
+| `ACCOUNT_CHANGE_FLAGGED` | The email carries a prior (replaced) account |
+
+## Results
+
+| Metric | Count |
+|---|---|
+| Payment rows | 302 |
+| `ready` | 0 |
+| `held` | 302 |
+
+Rows per hold reason (a row can have more than one):
+
+| Code | Rows |
+|---|---|
+| `NOT_OK_STATUS` | 0 |
+| `MISSING_ACCOUNT` | 0 |
+| `CLIENT_NOT_ON_FILE` | 0 |
+| `ACCOUNT_MISMATCH` | 302 |
+| `CURRENCY_MISMATCH` | 230 |
+| `SORT_CODE_MISMATCH` | 10 |
+| `ACCOUNT_CHANGE_FLAGGED` | 17 |
+
+Every held row has at least one reason filled in.
+
+## Data notes
+
+- **Join key.** Client names did not match: 0 of 302 payment rows have a name that exists on file, and every row's client ID points to a different company name on file. The files were joined on Client ID, the only field both share.
+- **No account overlap.** None of the 302 emailed accounts appear on file under any client, either exactly or with leading zeros ignored. That is why every row is held. `ACCOUNT_MISMATCH` here reflects files that do not overlap, not clients who changed their bank details. The currency differs on 230 rows, which points the same way.
+- **Leading zeros.** 18 of the 30 on-file account cells are stored as numbers in Excel, and none start with 0. Values were not padded or altered. Because no emailed account matched even with zeros ignored, lost zeros did not cause the mismatches.
+- **Account changes.** 17 rows carry a prior account and are also flagged `ACCOUNT_CHANGE_FLAGGED`. The call-back team can see both accounts in the table.
+- **Sort codes.** The 10 `SORT_CODE_MISMATCH` rows are emails that gave a separate sort code. In the examples reviewed (client CL-1008), the on-file account is a Canadian-dollar account with no IBAN to check the sort code against, so it is held.
+
+## Limitations
+
+No row is `ready`, so the release path was not exercised on the real files. It was tested on a small made-up dataset, where matching accounts (including IBANs with spaces, dashed US numbers, UK sort code plus account, and accounts with leading zeros) did come out `ready` and each failure type was held with the right code. If a corrected accounts file is supplied, run `--diagnose-only` first and confirm the overlap section shows matches under the same client ID before trusting any decisions.
