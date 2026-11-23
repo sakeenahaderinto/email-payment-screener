@@ -2,7 +2,7 @@
 
 Extracts payment instructions from client emails (exported to CSV) into a structured payment table, using OpenRouter for the LLM call, Pydantic for validation, and pandas for I/O. Each row in the output is one payment.
 
-The extracted account details are checked against our own records in Stage 2 (hold/release check, described at the end), to decide which payments can go through and which must be held for a call-back.
+The extracted account details are checked against our own records in Stage 2 (hold/release check, described at the end), to decide which payments can go through and which must be held for a call-back. Stage 3 loads the checked rows into a Snowflake payment queue, also described at the end.
 
 ## Files
 
@@ -212,3 +212,89 @@ Every held row has at least one reason filled in.
 ## Limitations
 
 No row is `ready`, so the release path was not exercised on the real files. It was tested on a small made-up dataset, where matching accounts (including IBANs with spaces, dashed US numbers, UK sort code plus account, and accounts with leading zeros) did come out `ready` and each failure type was held with the right code. If a corrected accounts file is supplied, run `--diagnose-only` first and confirm the overlap section shows matches under the same client ID before trusting any decisions.
+
+
+---
+
+# Stage 3: Snowflake payment queue
+
+Loads the checked payment table into `PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE`, where the payments team works from it each morning and the payment review page will later read it. Every row is marked `held` or `ready`. The table was provisioned by Data Platform, and the loader writes to it exactly as defined, without creating tables or schemas.
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `load_queue.py` | Validates, maps and loads the rows |
+| `queue_checks.sql` | Read-only checks on the loaded queue, also run by the loader after the load |
+
+## How to run
+
+```bash
+pip install snowflake-connector-python pandas python-dotenv
+```
+
+Set these in your environment or a `.env` file. `.env` must stay out of git, and the script warns if it is not in `.gitignore`.
+
+```
+SNOWFLAKE_ACCOUNT=...
+SNOWFLAKE_USER=...
+SNOWFLAKE_PASSWORD=...
+```
+
+```bash
+python load_queue.py --dry-run       # validate and map only, write queue_rows_preview.csv
+python load_queue.py                 # the real load
+python load_queue.py --checks-only   # run queue_checks.sql against the table
+```
+
+## How the checked table maps to the queue
+
+| Queue column | Source |
+|---|---|
+| `EMAIL_ID`, `CLIENT_ID`, `PAYEE_NAME`, `PAYMENT_DATE`, `ACCOUNT_NUMBER`, `CURRENCY` | Copied from `payments_decisions.csv`. Empty values become real NULLs and nothing is reformatted |
+| `AMOUNT` | Exact two-decimal number, never a float |
+| `IS_FORWARDED_THREAD` | `true` / `false` from the CSV |
+| `EXTRACTION_STATUS` | `ok` stays `ok`; `extraction_failed` becomes `unusable_output` |
+| `BANK_DETAIL_CHANGE` | `true` when the row has `ACCOUNT_MISMATCH` or `ACCOUNT_CHANGE_FLAGGED` |
+| `DISPOSITION` | Our `decision`. A held row is never turned into `ready`, and a row the checks find a problem with becomes `held` |
+| `HOLD_REASON` | One value per row, chosen in this order: `unusable_model_output`, `missing_required_field`, `invalid_amount`, `invalid_payment_date`, `invalid_account_number`, `bank_detail_change`. `none` only when the row is ready |
+| `GE_VALIDATION_PASSED` | `true` only if the row failed no Great Expectations check, cross-checked against `ge_validation_result.json` |
+| `LOAD_RUN_ID` | One identifier per run, the same on every row |
+| `LOADED_AT` | Left out, so Snowflake sets it from its default |
+
+## Safeguards
+
+- Credentials come from environment variables only and are never printed or written to a file.
+- The connection uses the `PAYMENTS_OPS_LOADER` role, which can only INSERT and SELECT on this one table.
+- Snowflake does not enforce the primary key or any CHECK constraints, so the script validates every row first (ID formats, date window, positive amount, allowed currencies, 34-character account limit). A value that cannot be stored exactly becomes NULL and the row is held, with the original value listed in the report. It never truncates or rounds.
+- Before inserting, the script checks the table for any `EMAIL_ID` in the batch and inserts nothing if one is already there. The loader role cannot delete, so this is what prevents a rerun from doubling the queue.
+- All rows go in one transaction, which rolls back on any error, and the row counts are verified before the commit.
+- The script stops for a human decision on anything it cannot map safely, instead of guessing.
+
+## Results
+
+Load run `20261123T211429Z-7630479e`:
+
+| Metric | Count |
+|---|---|
+| Rows loaded | 302 |
+| Distinct `EMAIL_ID`s | 300 |
+| `held` | 302 |
+| `ready` | 0 |
+| `HOLD_REASON` = `bank_detail_change` | 302 |
+| `BANK_DETAIL_CHANGE` = true | 302 |
+| `GE_VALIDATION_PASSED` = false | 302 |
+| Rows changed by the validation checks | 0 |
+
+After the commit, the Snowflake counts by disposition and hold reason matched the mapping exactly. All ten checks in `queue_checks.sql` came back clean: no held row with reason `none`, no ready row with a reason, no dates outside the window, no non-positive amounts, and no values outside the allowed lists.
+
+## Data notes
+
+- **Two emails appear twice.** EM-00021 and EM-00291 each contain two payments, so `EMAIL_ID` repeats on two pairs of rows (302 rows from 300 emails). The queue is defined as one row per email and its primary key is not enforced, so both payments were loaded with the same `EMAIL_ID` rather than dropping one. This should be confirmed with the table owner.
+- **Everything is held.** As in Stage 2, none of the emailed accounts appear on file under any client, so every row is held as `bank_detail_change`. This reflects the data, not a client changing their bank details.
+- **One reason per row.** `HOLD_REASON` holds a single value, so our `CURRENCY_MISMATCH`, `SORT_CODE_MISMATCH` and `CLIENT_NOT_ON_FILE` codes, which the queue has no value for, are not stored there. 230 rows carried at least one of them. The full reasons remain in `payments_decisions.csv`.
+- **Timestamps.** `LOADED_AT` is a timestamp without a time zone, set in the Snowflake session's time zone. It reads 13:14, while the UTC run ID reads 21:14 for the same load.
+
+## Limitations
+
+The queue is loaded but nothing reads it yet, because the review page comes later. The load is not repeatable by design: running the script again will refuse to insert, and correcting or removing rows needs someone with more privileges than the loader role.

@@ -1,0 +1,66 @@
+-- Read-only checks for PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE.
+-- Paste into Snowsight and Run All, or run: python load_queue.py --checks-only
+-- Expected after the 2026-12-08 load: 302 rows, 300 distinct EMAIL_IDs,
+-- EM-00021 and EM-00291 appearing twice, and no rows in the problem checks.
+
+-- 1. Total rows
+SELECT COUNT(*) AS total_rows
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE;
+
+-- 2. Distinct EMAIL_IDs
+SELECT COUNT(DISTINCT EMAIL_ID) AS distinct_email_ids
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE;
+
+-- 3. EMAIL_IDs that appear more than once (the primary key is not enforced)
+SELECT EMAIL_ID, COUNT(*) AS row_count
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+GROUP BY EMAIL_ID
+HAVING COUNT(*) > 1
+ORDER BY EMAIL_ID;
+
+-- 4. Rows by DISPOSITION
+SELECT DISPOSITION, COUNT(*) AS row_count
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+GROUP BY DISPOSITION
+ORDER BY DISPOSITION;
+
+-- 5. Rows by HOLD_REASON
+SELECT HOLD_REASON, COUNT(*) AS row_count
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+GROUP BY HOLD_REASON
+ORDER BY HOLD_REASON;
+
+-- 6. Contradictions: held with reason none, or ready with any other reason
+SELECT EMAIL_ID, DISPOSITION, HOLD_REASON
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+WHERE (DISPOSITION = 'held' AND HOLD_REASON = 'none')
+   OR (DISPOSITION = 'ready' AND HOLD_REASON <> 'none')
+ORDER BY EMAIL_ID;
+
+-- 7. Payment dates outside 2026-09-01 to 2026-12-18
+SELECT EMAIL_ID, PAYMENT_DATE
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+WHERE PAYMENT_DATE < '2026-09-01'::DATE OR PAYMENT_DATE > '2026-12-18'::DATE
+ORDER BY EMAIL_ID;
+
+-- 8. Non-positive amounts
+SELECT EMAIL_ID, AMOUNT
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+WHERE AMOUNT <= 0
+ORDER BY EMAIL_ID;
+
+-- 9. Values outside the allowed lists (currency, disposition, hold reason)
+SELECT EMAIL_ID, CURRENCY, DISPOSITION, HOLD_REASON
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+WHERE CURRENCY NOT IN ('USD', 'EUR', 'GBP', 'CAD', 'CHF', 'JPY')
+   OR DISPOSITION NOT IN ('held', 'ready')
+   OR HOLD_REASON NOT IN ('bank_detail_change', 'missing_required_field', 'invalid_amount',
+                          'invalid_payment_date', 'invalid_account_number',
+                          'unusable_model_output', 'none')
+ORDER BY EMAIL_ID;
+
+-- 10. Distinct LOAD_RUN_IDs and the rows each wrote
+SELECT LOAD_RUN_ID, COUNT(*) AS row_count, MIN(LOADED_AT) AS first_loaded_at
+FROM PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE
+GROUP BY LOAD_RUN_ID
+ORDER BY first_loaded_at;

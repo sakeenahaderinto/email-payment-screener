@@ -1,0 +1,303 @@
+EMAIL_ID,CLIENT_ID,PAYEE_NAME,PAYMENT_DATE,AMOUNT,CURRENCY,ACCOUNT_NUMBER,BANK_DETAIL_CHANGE,IS_FORWARDED_THREAD,EXTRACTION_STATUS,DISPOSITION,HOLD_REASON,GE_VALIDATION_PASSED,LOAD_RUN_ID
+EM-00001,CL-1001,Briarwood Payroll,2026-09-04,184250.00,GBP,GB29 NWBK 6016 1331 9268 19,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00002,CL-1002,Cascadia Fuel Systems,2026-09-04,212345.78,USD,3301-556-0098,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00003,CL-1003,Caldwell & Pryce LLP,2026-09-10,920000.00,USD,7719-003-2210,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00004,CL-1004,Weissbach Verpackung GmbH,2026-09-03,42750.00,EUR,DE89 3704 0044 0532 0130 00,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00005,CL-1005,Calder Dyes Ltd,2026-09-07,28640.50,GBP,GB82 WEST 1234 5698 7654 32,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00006,CL-1006,Ardross Transport Ltd,2026-09-04,18200.00,GBP,GB29 NWBK 6016 1331 9268 19,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00007,CL-1007,Keystone Bearings Inc,2026-09-08,76350.00,USD,4012-887-9931,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00008,CL-1008,Lynton Paper Mills,2026-09-04,24180.40,GBP,7731 2208,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00009,CL-1009,Aster Sterilisation Services,2026-09-09,39480.00,EUR,IE29 AIBK 9311 5212 3456 78,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00010,CL-1010,Nordsjo Bunker AS,2026-09-09,318400.00,USD,NO93 8601 1117 947,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00011,CL-1011,Kelliher Payroll,2026-09-15,1284900.00,USD,8820-114-7765,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00012,CL-1012,Crescent Linen Services,2026-09-08,54780.00,USD,6655-220-1193,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00013,CL-1013,Fornaci Rizzoli Srl,2026-09-07,31900.00,EUR,IT60 X054 2811 1010 0000 0123 456,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00014,CL-1014,Summit Avionics LLC,2026-09-10,165275.00,USD,5940-221-8806,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00015,CL-1015,Meridian Build Services,,64900.00,USD,5540-118-9023,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00016,CL-1016,Harbor Grain Co,2026-09-08,86420.00,USD,5521-009-3318,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00017,CL-1017,Halden Turbine Services,2026-09-11,138600.00,USD,7104-668-2209,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00018,CL-1018,Beckett Engineering Ltd,2026-09-09,72500.00,GBP,GB47 BARC 2004 1855 7712 09,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00019,CL-1019,Independent Authority for Public Revenue,2026-09-10,58410.00,EUR,GR16 0110 1250 0000 0001 2300 695,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00020,CL-1020,Meridian Cloud Hosting,2026-09-10,43275.00,USD,4481-002-7619,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00021,CL-1021,Caleb Ruthven Consulting,2026-09-10,14500.00,USD,4012-887-9931,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00021,CL-1021,Dataform Labs,,6275.50,USD,4012-887-9944,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00022,CL-1022,Cartonnerie Beaulieu,2026-09-11,48560.00,EUR,FR76 3000 6000 0112 3456 7890 189,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00023,CL-1023,Hawthorn Aggregates,2026-09-11,112850.00,GBP,GB11 LOYD 3096 1700 7099 43,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00024,CL-1024,Alder Fixtures Inc,2026-09-10,68340.00,USD,9088-441-2260,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00025,CL-1025,Willamette Hop Farms,2026-09-10,37480.00,USD,6655-220-1193,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00026,CL-1026,Zeller Salary Clearing,2026-09-25,486200.00,CHF,CH93 0076 2011 6238 5295 7,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00027,CL-1027,Fenwick Rotor Services,2026-09-14,94750.00,GBP,GB33 BUKB 2020 1555 5555 55,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00028,CL-1028,Orchard Medical Leasing,2026-09-11,28750.00,USD,6402-771-3301,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00029,CL-1029,Werkform Technik GmbH,2026-09-15,117300.00,EUR,DE44 5001 0517 5407 3249 31,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00030,CL-1030,Armateurs Calvi SAS,2026-09-08,128500.00,EUR,FR33 3000 2005 0000 0015 7845 Z25,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00031,CL-1001,North Vale Timber,2026-09-15,46720.00,GBP,GB56 HBUK 4012 7612 3456 78,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00032,CL-1002,Strata Tyres Inc,2026-09-15,62300.00,USD,3350-711-8402,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00033,CL-1003,Parkside Property Holdings,2026-09-14,38400.00,USD,5008-220-1190,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00034,CL-1004,Rheinwald Agrar GmbH,2026-09-16,95300.00,EUR,DE62 1002 0500 0009 3140 07,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00035,CL-1005,Whitby Utilities,2026-09-16,19580.00,GBP,GB68 MIDL 4005 1550 1234 56,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00036,CL-1006,Moorland Cartons,2026-09-17,32640.00,GBP,GB91 BARC 2004 1855 7712 18,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00037,CL-1007,Broadview Steel Supply,2026-09-17,88900.00,USD,4012-887-7770,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00038,CL-1008,Cavendish Bindery,2026-09-16,15320.00,GBP,7708 1192,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00039,CL-1009,Shannon Clinical Packaging,2026-09-18,28475.00,EUR,IE64 BOFI 9000 1712 3456 78,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00040,CL-1010,Bergen Port Services,2026-09-16,48760.00,USD,NO47 8601 1117 955,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00041,CL-1011,Meridian Biochem LLC,2026-09-18,75280.00,USD,8820-114-4401,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00042,CL-1012,Willow Guest Supply,2026-09-17,33960.00,USD,5051-808-1122,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00043,CL-1013,Bellini Forni Srl,2026-09-18,58600.00,EUR,IT43 M030 6909 6061 0000 0012 345,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00044,CL-1014,Altair Composites,2026-09-21,216450.00,USD,5940-221-7708,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00045,CL-1015,Apex Lift Maintenance,2026-09-18,21980.00,USD,5540-118-7721,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00046,CL-1016,Norlake Cold Storage,2026-09-18,47250.00,USD,5521-009-1184,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00047,CL-1017,Meridian Inspection Group,2026-09-22,102600.00,USD,7104-668-1182,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00048,CL-1018,Vantage Alloy Traders,2026-09-18,94350.00,GBP,GB75 LOYD 3096 1700 7099 57,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00049,CL-1019,Pelagos Olive Cooperative,2026-09-21,86320.00,EUR,GR21 0140 1250 0000 0001 2300 711,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00050,CL-1020,Elara Systems Consulting,2026-09-21,56800.00,USD,4481-002-9910,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00051,CL-1021,Atlas Data Services,2026-09-23,42750.00,USD,4012-887-4456,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00052,CL-1022,Encres Lyonnaises,2026-09-21,22140.00,EUR,FR14 3000 6000 0112 3456 7890 244,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00053,CL-1023,Pennine Crane Hire,2026-09-22,68400.00,GBP,GB11 LOYD 3096 1700 7099 92,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00054,CL-1024,Ember Signworks,2026-09-22,31875.00,USD,9088-441-5551,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00055,CL-1025,Clearbrook Glassworks,2026-09-22,59640.00,USD,6655-220-7718,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00056,CL-1026,Helvetic Precision AG,2026-09-23,78250.00,CHF,CH48 0076 2011 6238 5295 1,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00057,CL-1027,Cairn Grid Advisors,2026-09-23,26480.00,GBP,GB33 BUKB 2020 1555 5555 81,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00058,CL-1028,Grove Diagnostic Supply,2026-09-24,48250.00,USD,6402-771-4402,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00059,CL-1029,Stahlwerk Heller GmbH,2026-09-24,138900.00,EUR,DE27 5001 0517 5407 3249 48,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00060,CL-1030,Atlantique Marine Survey SAS,2026-09-22,16480.00,EUR,FR33 3000 2005 0000 0015 7845 Z41,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00061,CL-1001,Ashcombe Fabrics,2026-09-24,39760.00,GBP,GB56 HBUK 4012 7612 3456 92,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00062,CL-1002,Bexley Industrial Estates,2026-09-24,42500.00,USD,3350-711-7712,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00063,CL-1003,Mallory Forensics LLC,2026-09-25,18500.00,USD,5008-220-3348,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00064,CL-1004,Elbe Fracht GmbH,2026-09-24,28400.00,EUR,DE62 1002 0500 0009 3140 25,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00065,CL-1005,Eastmere Payroll Clearing,2026-09-25,218400.00,GBP,GB68 MIDL 4005 1550 1234 71,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00066,CL-1006,North Fen Cooling,2026-09-25,14760.00,GBP,GB91 BARC 2004 1855 7712 55,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00067,CL-1007,Bracken Tooling LLC,2026-09-28,121500.00,USD,4012-887-6602,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00068,CL-1008,Northbank Inks,2026-09-25,29440.00,GBP,7755 3410,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00069,CL-1009,Iona Medical Payroll,2026-09-25,246800.00,EUR,IE29 AIBK 9311 5212 3456 94,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00070,CL-1010,Fjord Marine Repair AS,2026-09-29,164700.00,USD,NO47 8601 1117 978,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00071,CL-1011,Eastlake Clinical Storage,2026-09-28,61250.00,USD,8820-114-8824,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00072,CL-1012,Garden Table Catering,2026-09-25,34800.00,USD,5051-808-2254,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00073,CL-1013,Argille Toscane Srl,2026-09-29,43750.00,EUR,IT43 M030 6909 6061 0000 0012 367,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00074,CL-1014,Precision Flight Labs,2026-09-30,52800.00,USD,5940-221-8821,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00075,CL-1015,County Revenue Office,2026-09-30,184600.00,USD,5540-118-9904,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00076,CL-1016,Fieldstone Labels,2026-09-29,21450.00,USD,5521-009-2258,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00077,CL-1017,Ridgewater Land Trust,2026-09-30,74500.00,USD,7104-668-4413,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00078,CL-1018,Calder Industrial Energy,2026-09-29,46920.00,GBP,GB75 LOYD 3096 1700 7099 68,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00079,CL-1019,Aegean Canning SA,2026-09-30,69740.00,EUR,GR21 0140 1250 0000 0001 2300 729,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00080,CL-1020,Sentinel Audit Partners,2026-09-30,28400.00,USD,4481-002-6690,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00081,CL-1021,Insight Panel Group,2026-09-30,22980.00,USD,4012-887-7714,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00082,CL-1022,Bois Rhone SAS,2026-09-30,17460.00,EUR,FR14 3000 6000 0112 3456 7890 251,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00083,CL-1023,Hensley Civil Works,2026-10-01,146250.00,GBP,GB11 LOYD 3096 1700 7099 76,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00084,CL-1024,Eastpoint Distribution,2026-09-30,118900.00,USD,9088-441-6618,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00085,CL-1025,Federal Excise Collections,2026-09-30,102400.00,USD,6655-220-9941,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00086,CL-1026,Alpen Calibration AG,2026-10-01,32900.00,CHF,CH48 0076 2011 6238 5295 4,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00087,CL-1027,Moorland Risk Underwriters,2026-10-01,78400.00,GBP,GB33 BUKB 2020 1555 5555 97,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00088,CL-1028,Crescent Lab Supply,2026-10-01,36180.00,USD,6402-771-5519,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00089,CL-1029,Corvinus Lohnkonto,2026-09-30,564200.00,EUR,DE27 5001 0517 5407 3249 60,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00090,CL-1030,Portuaire Calais SAS,2026-10-02,96750.00,EUR,FR33 3000 2005 0000 0015 7845 Z58,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00091,CL-1001,Marlow Finishes,2026-10-02,12875.00,GBP,GB56 HBUK 4012 7612 3456 41,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00092,CL-1002,Fleetline Repairs,2026-10-02,39450.00,USD,3350-711-8828,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00093,CL-1003,State Court Administration,2026-10-02,16420.00,USD,5008-220-7721,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00094,CL-1004,Eifel Grain GmbH,2026-10-05,126800.00,EUR,DE62 1002 0500 0009 3140 38,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00095,CL-1005,Severn Freight Ltd,2026-10-02,23760.00,GBP,GB68 MIDL 4005 1550 1234 83,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00096,CL-1006,Meadow Feed Mills,2026-10-05,56840.00,GBP,GB91 BARC 2004 1855 7712 72,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00097,CL-1007,Glenhaven Payroll,2026-09-30,638500.00,USD,4012-887-1178,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00098,CL-1008,Calder Distribution,2026-10-05,44720.00,GBP,7761 2290,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00099,CL-1009,Dublin Precision Moulding,2026-10-06,84500.00,EUR,IE64 BOFI 9000 1712 3456 91,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00100,CL-1010,Nordhavn Provisioners,2026-10-05,35980.00,USD,NO47 8601 1117 986,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00101,CL-1011,Kelliher Payroll,2026-10-01,1298700.00,USD,8820-114-7765,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00102,CL-1012,Hearth Commercial Kitchens,2026-10-07,87500.00,USD,5051-808-7738,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00103,CL-1013,Scatole Romagna Srl,2026-10-06,27780.00,EUR,IT43 M030 6909 6061 0000 0012 379,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00104,CL-1014,Titan Alloy Works,2026-10-06,176900.00,USD,5940-221-9942,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00105,CL-1015,Springhill Grounds,2026-10-07,27640.00,USD,5540-118-4437,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00106,CL-1016,Sealright Packaging,2026-10-06,36850.00,USD,5521-009-6632,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00107,CL-1017,Greenfield Survey Group,2026-10-07,41320.00,USD,7104-668-5538,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00108,CL-1018,Sheffield Furnace Parts,2026-10-07,63470.00,GBP,GB75 LOYD 3096 1700 7099 83,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00109,CL-1019,Stavros Payroll,2026-10-02,312500.00,EUR,GR21 0140 1250 0000 0001 2300 742,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00110,CL-1020,Bluewater Dev Tools,2026-10-08,19680.00,USD,4481-002-8821,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00111,CL-1021,Underwood Payroll,2026-10-01,426900.00,USD,4012-887-1180,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00112,CL-1022,Polymere Centre SAS,2026-10-08,71340.00,EUR,FR14 3000 6000 0112 3456 7890 269,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00113,CL-1023,Ironbridge Scaffolding,2026-10-08,52800.00,GBP,GB11 LOYD 3096 1700 7099 88,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00114,CL-1024,Xenia Property Clearing,2026-10-05,284600.00,USD,9088-441-1180,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00115,CL-1025,Riverbend Canning,2026-10-09,63250.00,USD,6655-220-8847,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00116,CL-1026,Basel Instrument Cases,2026-10-08,25400.00,CHF,CH48 0076 2011 6238 5295 8,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00117,CL-1027,Fenland Grid Services,2026-10-09,186500.00,GBP,GB33 BUKB 2020 1555 5555 64,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00118,CL-1028,Bellmont Payroll,2026-10-05,782400.00,USD,6402-771-1187,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00119,CL-1029,Meissner Automation GmbH,2026-10-09,69750.00,EUR,DE27 5001 0517 5407 3249 73,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00120,CL-1030,Marseille Cargo Services,2026-10-08,77400.00,EUR,FR33 3000 2005 0000 0015 7845 Z76,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00121,CL-1001,Blackthorn Joinery,2026-10-12,54180.00,GBP,GB56 HBUK 4012 7612 3456 55,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00122,CL-1002,Cascadia Fuel Systems,2026-10-12,228410.25,USD,3301-556-0098,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00123,CL-1003,Hawley Review Services,2026-10-13,28750.00,USD,5008-220-5564,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00124,CL-1004,Hansa Muehlentechnik,2026-10-13,48760.00,EUR,DE62 1002 0500 0009 3140 49,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00125,CL-1005,Vale Spinning Ltd,2026-10-13,104680.00,GBP,GB68 MIDL 4005 1550 1234 95,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00126,CL-1006,Fairhaven Payroll,2026-10-09,329800.00,GBP,GB91 BARC 2004 1855 7712 91,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00127,CL-1007,Anchor Fasteners Inc,2026-10-14,48375.00,USD,4012-887-6628,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00128,CL-1008,Lynton Paper Mills,2026-10-14,36750.00,GBP,7731 2208,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00129,CL-1009,Emerald Healthcare Freight,2026-10-14,21940.00,EUR,IE64 BOFI 9000 1712 3456 04,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00130,CL-1010,Nordsjo Bunker AS,2026-10-15,297600.00,USD,NO93 8601 1117 947,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00131,CL-1011,Caldera Pharma Packaging,2026-10-15,98500.00,USD,8820-114-5536,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00132,CL-1012,Crescent Linen Services,2026-10-14,59120.00,USD,6655-220-1193,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00133,CL-1013,Adriatica Smalti Srl,2026-10-15,62750.00,EUR,IT43 M030 6909 6061 0000 0012 381,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00134,CL-1014,Northpoint Payroll,2026-10-15,1438200.00,USD,5940-221-1166,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00135,CL-1015,Sentinel Property Security,2026-10-15,38240.00,USD,5540-118-6621,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00136,CL-1016,Harbor Grain Co,2026-10-15,91360.00,USD,5521-009-3318,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00137,CL-1017,West Mesa Drilling,2026-10-16,257400.00,USD,7104-668-6649,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00138,CL-1018,Pennine Haulage,2026-10-16,38950.00,GBP,GB75 LOYD 3096 1700 7099 94,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00139,CL-1019,Thessaly Cartons SA,2026-10-16,54480.00,EUR,GR21 0140 1250 0000 0001 2300 756,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00140,CL-1020,Verity Localisation,2026-10-16,14780.00,USD,4481-002-8896,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00141,CL-1021,Summit Compute,2026-10-16,53240.00,USD,4012-887-8825,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00142,CL-1022,Direction Generale des Finances Publiques,2026-10-19,88410.00,EUR,FR14 3000 6000 0112 3456 7890 287,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00143,CL-1023,Ainsley Electrical,2026-10-16,78360.00,GBP,GB11 LOYD 3096 1700 7099 13,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00144,CL-1024,Willowbrook Apparel,2026-10-16,128640.00,USD,9088-441-7712,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00145,CL-1025,Granite Cooling Systems,2026-10-19,42750.00,USD,6655-220-6620,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00146,CL-1026,Zeller Salary Clearing,2026-10-26,491800.00,CHF,CH93 0076 2011 6238 5295 7,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00147,CL-1027,Northmoor Security,2026-10-19,18350.00,GBP,GB33 BUKB 2020 1555 5555 72,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00148,CL-1028,Meridian Care Staffing,2026-10-19,76200.00,USD,6402-771-6631,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00149,CL-1029,Falken Reifenhandel GmbH,2026-10-20,76280.00,EUR,DE27 5001 0517 5407 3249 85,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00150,CL-1030,Cabinet Morel Maritime,2026-10-19,32900.00,EUR,FR33 3000 2005 0000 0015 7845 Z83,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00151,CL-1001,Briarwood Payroll,2026-10-16,187600.00,GBP,GB29 NWBK 6016 1331 9268 19,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00152,CL-1002,Grove Warehouse Services,2026-10-20,28740.00,USD,3350-711-9940,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00153,CL-1003,Caldwell & Pryce LLP,2026-10-20,934000.00,USD,7719-003-2210,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00154,CL-1004,Weissbach Verpackung GmbH,2026-10-20,45900.00,EUR,DE89 3704 0044 0532 0130 00,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00155,CL-1005,Redbrook Machinery,2026-10-20,34850.00,GBP,GB68 MIDL 4005 1550 1234 16,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00156,CL-1006,Selby Hygiene Ltd,2026-10-20,22680.00,GBP,GB91 BARC 2004 1855 7712 36,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00157,CL-1007,Millstone Precision,2026-10-21,95320.00,USD,4012-887-7753,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00158,CL-1008,Harrowgate Payroll,2026-10-23,248900.00,GBP,7731 0088,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00159,CL-1009,Cairn Medical Sensors,2026-10-21,67380.00,EUR,IE64 BOFI 9000 1712 3456 17,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00160,CL-1010,Rotterdam Harbour Services,2026-10-21,54190.00,USD,NL91 ABNA 0417 1643 00,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00161,CL-1011,Westhaven Clinical Institute,2026-10-22,148000.00,USD,8820-114-6608,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00162,CL-1012,Silverline Laundry Systems,2026-10-22,68400.00,USD,5051-808-8862,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00163,CL-1013,Monteverdi Payroll,2026-10-23,378400.00,EUR,IT60 X054 2811 1010 0000 0123 490,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00164,CL-1014,Falcon Flight Testing,2026-10-22,71350.00,USD,5940-221-7734,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00165,CL-1015,Beacon Mechanical,2026-10-22,51260.00,USD,5540-118-5580,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00166,CL-1016,Sunfield Produce Co,2026-10-22,67420.00,USD,5521-009-7743,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00167,CL-1017,State Energy Commission,2026-10-23,62800.00,USD,7104-668-9952,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00168,CL-1018,Harland Steel Traders,2026-10-23,129750.00,GBP,GB75 LOYD 3096 1700 7099 26,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00169,CL-1019,Helios Cold Logistics,2026-10-23,28460.00,EUR,GR21 0140 1250 0000 0001 2300 768,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00170,CL-1020,Talmont Payroll,2026-10-20,518600.00,USD,4481-002-1174,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00171,CL-1021,Clarity Annotation LLC,2026-10-23,36750.00,USD,4012-887-9938,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00172,CL-1022,Cartonnerie Beaulieu,2026-10-23,59320.00,EUR,FR76 3000 6000 0112 3456 7890 189,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00173,CL-1023,Westbridge Payroll,2026-10-23,624800.00,GBP,GB11 LOYD 3096 1700 7099 02,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00174,CL-1024,Atlas Display Works,2026-10-23,72940.00,USD,9088-441-8834,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00175,CL-1025,Willamette Hop Farms,2026-10-26,41260.00,USD,6655-220-1193,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00176,CL-1026,Alpen Calibration AG,2026-10-26,36850.00,CHF,CH48 0076 2011 6238 5295 4,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00177,CL-1027,Skye Blade Testing,2026-10-26,57800.00,GBP,GB33 BUKB 2020 1555 5555 23,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00178,CL-1028,Cedar Medical Interiors,2026-10-26,31980.00,USD,6402-771-7748,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00179,CL-1029,Bergmann Anlagenbau GmbH,2026-10-27,184500.00,EUR,DE27 5001 0517 5407 3249 96,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00180,CL-1030,Armor Salvage SAS,2026-10-27,55800.00,EUR,FR33 3000 2005 0000 0015 7845 Z94,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00181,CL-1001,Cotswold Leatherworks,2026-10-27,61250.00,GBP,GB56 HBUK 4012 7612 3456 67,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00182,CL-1002,Meridian Fleet Leasing,2026-10-27,81600.00,USD,3350-711-1144,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00183,CL-1003,Archive House Services,2026-10-27,18460.00,USD,5008-220-6675,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00184,CL-1004,Rheinwald Agrar GmbH,2026-10-28,107250.00,EUR,DE62 1002 0500 0009 3140 07,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00185,CL-1005,Calder Dyes Ltd,2026-10-28,38420.00,GBP,GB82 WEST 1234 5698 7654 32,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00186,CL-1006,Ardross Transport Ltd,2026-10-28,19740.00,GBP,GB29 NWBK 6016 1331 9268 19,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00187,CL-1007,Pinecrest Automation,2026-10-29,226000.00,USD,4012-887-8846,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00188,CL-1008,Cavendish Bindery,2026-10-28,18760.00,GBP,7708 1192,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00189,CL-1009,Celtic Device Testing,2026-10-29,47580.00,EUR,IE64 BOFI 9000 1712 3456 28,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00190,CL-1010,Nordsjo Bunker AS,2026-10-30,326850.00,USD,NO93 8601 1117 947,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00191,CL-1011,Axis Lab Calibration,2026-10-29,39750.00,USD,8820-114-7789,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00192,CL-1012,Greenwood Landscape Co,2026-10-29,28460.00,USD,5051-808-9945,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00193,CL-1013,Energia Padana SpA,2026-10-30,84260.00,EUR,IT43 M030 6909 6061 0000 0012 394,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00194,CL-1014,Aeroform Tooling Inc,2026-10-30,138400.00,USD,5940-221-8845,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00195,CL-1015,Evergreen Commercial Insurance,2026-10-30,98500.00,USD,5540-118-7754,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00196,CL-1016,Norlake Cold Storage,2026-10-30,51380.00,USD,5521-009-1184,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00197,CL-1017,Stonegate Field Equipment,2026-10-30,186750.00,USD,7104-668-7750,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00198,CL-1018,Redfern Payroll,2026-10-30,414200.00,GBP,GB75 LOYD 3096 1700 7099 05,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00199,CL-1019,Independent Authority for Public Revenue,2026-10-30,62470.00,EUR,GR16 0110 1250 0000 0001 2300 695,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00200,CL-1020,Meridian Cloud Hosting,2026-10-30,45810.00,USD,4481-002-7619,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00201,CL-1021,Marketfield Research,2026-10-30,17250.00,USD,4012-887-7708,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00202,CL-1022,Machines Loire SAS,2026-10-30,36780.00,EUR,FR14 3000 6000 0112 3456 7890 295,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00203,CL-1023,Hensley Civil Works,2026-11-02,168400.00,GBP,GB11 LOYD 3096 1700 7099 76,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00204,CL-1024,Beacon Retail Lighting,2026-10-30,58320.00,USD,9088-441-9976,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00205,CL-1025,Yarrowfield Payroll,2026-10-30,328600.00,USD,6655-220-1172,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00206,CL-1026,Rigi Electronics AG,2026-11-02,108900.00,CHF,CH48 0076 2011 6238 5295 9,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00207,CL-1027,Alderwick Payroll,2026-10-30,287400.00,GBP,GB33 BUKB 2020 1555 5555 06,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00208,CL-1028,Horizon Imaging Supply,2026-11-02,112800.00,USD,6402-771-8873,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00209,CL-1029,Corvinus Lohnkonto,2026-10-30,571600.00,EUR,DE27 5001 0517 5407 3249 60,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00210,CL-1030,Compagnie Navale Armand,2026-11-03,156800.00,EUR,FR33 3000 2005 0000 0015 7845 Z09,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00211,CL-1001,North Vale Timber,2026-11-03,73380.00,GBP,GB56 HBUK 4012 7612 3456 78,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00212,CL-1002,Stonebridge Facilities,2026-11-03,46780.00,USD,3350-711-2256,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00213,CL-1003,State Revenue Department,2026-11-03,247800.00,USD,5008-220-9901,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00214,CL-1004,Elbe Lagerhaus GmbH,2026-11-03,32460.00,EUR,DE62 1002 0500 0009 3140 58,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00215,CL-1005,Kingswell Loom Services,2026-11-04,51820.00,GBP,GB68 MIDL 4005 1550 1234 27,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00216,CL-1006,Moorland Cartons,2026-11-04,34980.00,GBP,GB91 BARC 2004 1855 7712 18,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00217,CL-1007,Ridgeline Castings,2026-11-04,117450.00,USD,4012-887-8861,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00218,CL-1008,Lynton Paper Mills,2026-11-05,42580.00,GBP,7731 2208,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00219,CL-1009,Shannon Clinical Packaging,2026-11-05,31640.00,EUR,IE64 BOFI 9000 1712 3456 78,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00220,CL-1010,Skagen Marine Survey AS,2026-11-05,62750.00,USD,NO47 8601 1117 993,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00221,CL-1011,Kelliher Payroll,2026-11-02,1304200.00,USD,8820-114-7765,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00222,CL-1012,Alder Guest Products,2026-11-05,45260.00,USD,5051-808-3376,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00223,CL-1013,Argille Toscane Srl,2026-11-06,49280.00,EUR,IT43 M030 6909 6061 0000 0012 367,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00224,CL-1014,Altair Composites,2026-11-06,149600.00,USD,5940-221-7708,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00225,CL-1015,Riverside Property Services,2026-11-06,67800.00,USD,5540-118-8843,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00226,CL-1016,Lakeside Freight,2026-11-06,45840.00,USD,5521-009-8864,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00227,CL-1017,Mesquite Industrial Services,2026-11-06,86250.00,USD,7104-668-8862,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00228,CL-1018,Vantage Alloy Traders,2026-11-06,103800.00,GBP,GB75 LOYD 3096 1700 7099 57,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00229,CL-1019,Pelagos Olive Cooperative,2026-11-06,91450.00,EUR,GR21 0140 1250 0000 0001 2300 711,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00230,CL-1020,Elara Systems Consulting,2026-11-06,62400.00,USD,4481-002-9910,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00231,CL-1021,Atlas Data Services,2026-11-06,34870.00,USD,4012-887-4456,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00232,CL-1022,Encres Lyonnaises,2026-11-06,27360.00,EUR,FR14 3000 6000 0112 3456 7890 244,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00233,CL-1023,Hawthorn Aggregates,2026-11-09,127400.00,GBP,GB11 LOYD 3096 1700 7099 43,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00234,CL-1024,Alder Fixtures Inc,2026-11-09,94850.00,USD,9088-441-2260,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00235,CL-1025,Prairie Malt Supply,2026-11-09,53780.00,USD,6655-220-7761,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00236,CL-1026,Helvetic Precision AG,2026-11-09,86240.00,CHF,CH48 0076 2011 6238 5295 1,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00237,CL-1027,Fenland Grid Services,2026-11-09,72450.00,GBP,GB33 BUKB 2020 1555 5555 64,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00238,CL-1028,Grove Diagnostic Supply,2026-11-09,59680.00,USD,6402-771-4402,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00239,CL-1029,Stahlwerk Heller GmbH,2026-11-10,149850.00,EUR,DE27 5001 0517 5407 3249 48,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00240,CL-1030,Atlantique Marine Survey SAS,2026-11-10,22840.00,EUR,FR33 3000 2005 0000 0015 7845 Z41,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00241,CL-1001,Briarwood Industrial Estates,2026-11-10,36500.00,GBP,GB56 HBUK 4012 7612 3456 83,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00242,CL-1002,Cascadia Fuel Systems,2026-11-10,231875.40,USD,3301-556-0098,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00243,CL-1003,Bayview Legal Research,2026-11-10,28740.00,USD,5008-220-7786,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00244,CL-1004,Eifel Grain GmbH,2026-11-10,119600.00,EUR,DE62 1002 0500 0009 3140 38,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00245,CL-1005,Vale Spinning Ltd,2026-11-11,112480.00,GBP,GB68 MIDL 4005 1550 1234 95,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00246,CL-1006,Avon Food Labs,2026-11-11,18670.00,GBP,GB91 BARC 2004 1855 7712 47,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00247,CL-1007,Glenhaven Payroll,2026-11-06,652400.00,USD,4012-887-1178,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00248,CL-1008,Calder Distribution,2026-11-11,47320.00,GBP,7761 2290,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00249,CL-1009,Iona Medical Payroll,2026-11-13,252600.00,EUR,IE29 AIBK 9311 5212 3456 94,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00250,CL-1010,Nordic Crew Travel AS,2026-11-11,34750.00,USD,NO47 8601 1117 914,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00251,CL-1011,Meridian Biochem LLC,2026-11-12,82150.00,USD,8820-114-4401,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00252,CL-1012,Garden Table Catering,2026-11-12,39280.00,USD,5051-808-2254,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00253,CL-1013,Bellini Forni Srl,2026-11-12,69350.00,EUR,IT43 M030 6909 6061 0000 0012 345,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00254,CL-1014,Altair Composites,2026-11-12,205600.00,USD,5940-221-7708,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00255,CL-1015,City Energy Services,2026-11-12,42810.00,USD,5540-118-9972,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00256,CL-1016,Harbor Grain Co,2026-11-12,98420.00,USD,5521-009-3398,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00257,CL-1017,Halden Turbine Services,2026-11-13,151800.00,USD,7104-668-2209,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00258,CL-1018,Tyne Industrial Supply,2026-11-13,28640.00,GBP,GB75 LOYD 3096 1700 7099 37,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00259,CL-1019,Thessaly Cartons SA,2026-11-13,59670.00,EUR,GR21 0140 1250 0000 0001 2300 756,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00260,CL-1020,Meridian Cloud Hosting,2026-11-13,47690.00,USD,4481-002-7619,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00261,CL-1021,Underwood Payroll,2026-11-13,439700.00,USD,4012-887-1180,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00262,CL-1022,Cartonnerie Beaulieu,2026-11-13,63640.00,EUR,FR76 3000 6000 0112 3456 7890 189,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00263,CL-1023,Northgate Structural Steel,2026-11-16,183600.00,GBP,GB11 LOYD 3096 1700 7099 29,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00264,CL-1024,Willowbrook Apparel,2026-11-13,149800.00,USD,9088-441-7712,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00265,CL-1025,Clearbrook Glassworks,2026-11-16,64780.00,USD,6655-220-7718,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00266,CL-1026,Zeller Salary Clearing,2026-11-25,497600.00,CHF,CH93 0076 2011 6238 5295 7,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00267,CL-1027,Cairn Grid Advisors,2026-11-16,31480.00,GBP,GB33 BUKB 2020 1555 5555 81,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00268,CL-1028,Orchard Medical Leasing,2026-11-16,30120.00,USD,6402-771-3301,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00269,CL-1029,Werkform Technik GmbH,2026-11-17,123800.00,EUR,DE44 5001 0517 5407 3249 31,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00270,CL-1030,Armateurs Calvi SAS,2026-11-17,113400.00,EUR,FR33 3000 2005 0000 0015 7845 Z25,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00271,CL-1001,North Vale Timber,2026-11-18,48250.00,GBP,GB56 HBUK 4012 7612 3456 78,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00272,CL-1002,Strata Tyres Inc,2026-11-18,68800.00,USD,3350-711-8402,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00273,CL-1003,Caldwell & Pryce LLP,2026-11-18,946000.00,USD,7719-003-2210,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00274,CL-1004,Weissbach Verpackung GmbH,2026-11-18,51380.00,EUR,DE89 3704 0044 0532 0130 00,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00275,CL-1005,Eastmere Payroll Clearing,2026-11-20,224600.00,GBP,GB68 MIDL 4005 1550 1234 71,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00276,CL-1006,Ardross Transport Ltd,2026-11-18,21680.00,GBP,GB29 NWBK 6016 1331 9268 27,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00277,CL-1007,Anchor Fasteners Inc,2026-11-19,51760.00,USD,4012-887-6628,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00278,CL-1008,Northbank Inks,2026-11-19,32840.00,GBP,7755 3410,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00279,CL-1009,Celtic Device Testing,2026-11-19,41950.00,EUR,IE64 BOFI 9000 1712 3456 28,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00280,CL-1010,Nordsjo Bunker AS,2026-11-19,342800.00,USD,NO93 8601 1117 947,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00281,CL-1011,Eastlake Clinical Storage,2026-11-20,68750.00,USD,8820-114-8824,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00282,CL-1012,Brightwell Hospitality Services,2026-11-20,56480.00,USD,5051-808-4487,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00283,CL-1013,Adriatica Smalti Srl,2026-11-20,71840.00,EUR,IT43 M030 6909 6061 0000 0012 381,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00284,CL-1014,Falcon Flight Testing,2026-11-20,82500.00,USD,5940-221-7734,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00285,CL-1015,Meridian Build Services,2026-11-20,73860.00,USD,5540-118-9023,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00286,CL-1016,Harbor Grain Co,2026-11-20,106400.00,USD,5521-009-3398,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00287,CL-1017,Meridian Inspection Group,2026-11-20,114850.00,USD,7104-668-1182,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00288,CL-1018,Harland Steel Traders,2026-11-20,142600.00,GBP,GB75 LOYD 3096 1700 7099 26,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00289,CL-1019,Stavros Payroll,2026-11-20,318200.00,EUR,GR21 0140 1250 0000 0001 2300 742,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00290,CL-1020,Sentinel Audit Partners,2026-11-20,33280.00,USD,4481-002-6690,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00291,CL-1021,Caleb Ruthven Consulting,2026-11-20,15800.00,USD,4012-887-9931,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00291,CL-1021,Dataform Labs,,7420.00,USD,4012-887-9944,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00292,CL-1022,Polymere Centre SAS,2026-11-20,75280.00,EUR,FR14 3000 6000 0112 3456 7890 269,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00293,CL-1023,Westbridge Payroll,2026-11-20,638200.00,GBP,GB11 LOYD 3096 1700 7099 02,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00294,CL-1024,Alder Fixtures Inc,2026-11-23,75460.00,USD,9088-441-2260,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00295,CL-1025,Willamette Hop Farms,2026-11-20,46820.00,USD,6655-220-1193,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00296,CL-1026,Basel Instrument Cases,2026-11-23,29750.00,CHF,CH48 0076 2011 6238 5295 8,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00297,CL-1027,Fenwick Rotor Services,2026-11-24,106400.00,GBP,GB33 BUKB 2020 1555 5555 55,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00298,CL-1028,Crescent Lab Supply,2026-11-24,41280.00,USD,6402-771-5519,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00299,CL-1029,Meissner Automation GmbH,2026-11-24,77480.00,EUR,DE27 5001 0517 5407 3249 73,True,False,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
+EM-00300,CL-1001,Briarwood Payroll,2026-11-20,191400.00,GBP,GB29 NWBK 6016 1331 9268 73,True,True,ok,held,bank_detail_change,False,20261123T211351Z-865dd909
