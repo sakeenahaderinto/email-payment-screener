@@ -271,6 +271,53 @@ python load_queue.py --checks-only   # run queue_checks.sql against the table
 - All rows go in one transaction, which rolls back on any error, and the row counts are verified before the commit.
 - The script stops for a human decision on anything it cannot map safely, instead of guessing.
 
+## The prompt
+
+This is the prompt the loader was built from:
+
+````
+Write `load_queue.py` to load all 302 checked payment rows into the Snowflake payment instruction queue, plus `queue_checks.sql` for verifying the load. Do not change `README.md`.
+
+INPUTS
+- `payments_decisions.csv`, the output of `hold_release_check.py`: one row per payment, 302 rows from 300 emails. Read it with dtype=str and tell me what columns you see before writing code. Key columns: email_id, client_id, payee_name, payment_date, amount, currency, account_number, is_forwarded_thread, status, decision, hold_reasons.
+- `ge_validation_result.json`, the Great Expectations result for the same rows.
+- The table definition is `PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE`. It already exists and is empty, so the script must write to it exactly as defined and must not create tables, schemas or any DDL. Columns: EMAIL_ID VARCHAR(8) NOT NULL, CLIENT_ID VARCHAR(7) NOT NULL, PAYEE_NAME VARCHAR(200), PAYMENT_DATE DATE, AMOUNT NUMBER(18,2), CURRENCY VARCHAR(3), ACCOUNT_NUMBER VARCHAR(34), BANK_DETAIL_CHANGE BOOLEAN NOT NULL, IS_FORWARDED_THREAD BOOLEAN NOT NULL, EXTRACTION_STATUS VARCHAR(20) NOT NULL, DISPOSITION VARCHAR(5) NOT NULL, HOLD_REASON VARCHAR(30) NOT NULL, GE_VALIDATION_PASSED BOOLEAN NOT NULL, LOAD_RUN_ID VARCHAR(64) NOT NULL, LOADED_AT TIMESTAMP_NTZ NOT NULL DEFAULT CURRENT_TIMESTAMP().
+
+CONNECTION AND CREDENTIALS
+- Use snowflake-connector-python, pandas and python-dotenv.
+- Read SNOWFLAKE_ACCOUNT, SNOWFLAKE_USER and SNOWFLAKE_PASSWORD from environment variables (loading a `.env` file is fine). Never put an account locator, username or password in code, comments, logs, the README or any committed file, and never print them. If one is missing, stop with a clear message.
+- Connect with role PAYMENTS_OPS_LOADER, warehouse PAYMENTS_OPS_WH, database PAYMENTS_OPS and schema PAYMENT_QUEUE. That role can only INSERT and SELECT on this one table: no UPDATE, DELETE, TRUNCATE or CREATE. Do not use write_pandas (it needs a stage). Use parameterized INSERT statements with an explicit column list, never SQL built by string concatenation.
+- Check that `.env` is listed in `.gitignore`, and tell me if it is not.
+
+COLUMN MAPPING
+- EMAIL_ID, CLIENT_ID, PAYEE_NAME, PAYMENT_DATE, AMOUNT, CURRENCY, ACCOUNT_NUMBER come from the CSV. Send AMOUNT as an exact Decimal with two decimal places (never a float), and empty values as real NULLs, never empty strings or NaN. Keep ACCOUNT_NUMBER exactly as written.
+- IS_FORWARDED_THREAD: convert "true"/"false" (any case) to a boolean. Anything else is an error.
+- EXTRACTION_STATUS: ok -> ok; extraction_failed -> unusable_output. Any other status: stop and show me.
+- BANK_DETAIL_CHANGE: true if hold_reasons contains ACCOUNT_MISMATCH or ACCOUNT_CHANGE_FLAGGED (the email asks to pay an account different from the one on file), otherwise false.
+- GE_VALIDATION_PASSED: true only if the row failed no expectation, meaning hold_reasons is empty. Cross-check this against `ge_validation_result.json`: the rows it records as failing must be the rows with a non-empty hold_reasons. Report any disagreement.
+- LOAD_RUN_ID: generate one per run (for example a UTC timestamp plus a short random suffix) and put the same value on every row.
+- LOADED_AT: leave it out of the INSERT and let Snowflake set it.
+- DISPOSITION is only `held` or `ready`. Start from our decision, and never turn a held row into ready. A row also becomes held if the checks below find a problem.
+- HOLD_REASON holds exactly one value from: bank_detail_change, missing_required_field, invalid_amount, invalid_payment_date, invalid_account_number, unusable_model_output, none. Use `none` only when the row is ready, and never leave a held row as `none`. Pick by this priority: unusable_model_output (status not ok), missing_required_field (payee_name, amount, currency or account_number missing; a missing payment_date alone is NOT a reason to hold), invalid_amount, invalid_payment_date, invalid_account_number, then bank_detail_change. Our NOT_OK_STATUS maps to unusable_model_output, MISSING_ACCOUNT to missing_required_field, and ACCOUNT_MISMATCH and ACCOUNT_CHANGE_FLAGGED to bank_detail_change. Our CURRENCY_MISMATCH, SORT_CODE_MISMATCH and CLIENT_NOT_ON_FILE have no queue value of their own. If a held row has only those reasons, stop and show me instead of inventing a mapping.
+
+VALIDATION BEFORE ANY INSERT
+Snowflake does not enforce the primary key or CHECK constraints, so the script must check every row against the DDL comments: EMAIL_ID is EM-00001..EM-00300, CLIENT_ID is CL-1001..CL-1030, PAYMENT_DATE is within 2026-09-01..2026-12-18, AMOUNT is positive with at most two decimal places, CURRENCY is one of USD, EUR, GBP, CAD, CHF, JPY, and ACCOUNT_NUMBER is at most 34 characters. A row that breaks a range rule is held with the matching HOLD_REASON. Never truncate, round or reformat a value to make it fit: if a value cannot be stored exactly as it is, store NULL in that column, hold the row with the matching reason, and list the original value in the report. A malformed EMAIL_ID or CLIENT_ID, or a currency outside the six codes (no matching reason exists), means stop and show me the rows.
+
+DUPLICATES AND SAFE RERUNS
+- EM-00021 and EM-00291 each hold two payments, so EMAIL_ID repeats on 2 pairs of rows: 302 rows, 300 distinct EMAIL_IDs. Load all 302 rows with EMAIL_ID unchanged. Do not drop, merge or rename them, and flag this clearly in the final report because the table's primary key is not enforced. Any other repeated EMAIL_ID is an error.
+- The loader role cannot delete, and the key is not enforced, so a second run would duplicate everything. Before inserting, SELECT the table and stop without inserting anything if any EMAIL_ID in this batch already exists. Do not try to delete or work around it.
+- Insert all rows in a single transaction and roll back on any error, so a load is all or nothing.
+
+PROCESS
+1. Add a `--dry-run` option that validates and maps every row, connects to nothing, writes the mapped rows to `queue_rows_preview.csv`, and prints the report below. Run it first and show me the report and 5 mapped rows. Do not touch Snowflake yet.
+2. Once I confirm, run the real load once.
+3. After it commits, confirm that this run's row count is 302 and the distinct EMAIL_ID count is 300, then print counts by DISPOSITION and HOLD_REASON and compare them to the dry-run counts.
+4. Write `queue_checks.sql`, read-only SELECTs I can paste into Snowsight, covering: total rows, distinct EMAIL_IDs, EMAIL_IDs that appear more than once, counts by DISPOSITION and HOLD_REASON, rows where DISPOSITION and HOLD_REASON contradict (held with `none`, or ready with anything else), rows outside the date window, non-positive amounts, and the distinct LOAD_RUN_IDs. Run it through the loader connection and report the results.
+
+REPORT
+Print: rows read, rows loaded, distinct EMAIL_IDs, counts by DISPOSITION, HOLD_REASON and BANK_DETAIL_CHANGE, GE_VALIDATION_PASSED counts, every row that was held or changed by the validation checks (with the original value), the two repeated EMAIL_IDs, and anything you were unsure about. Flag problems and do not silently fix them.
+````
+
 ## Results
 
 Load run `20261123T211429Z-7630479e`:
