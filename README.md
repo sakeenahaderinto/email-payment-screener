@@ -2,7 +2,7 @@
 
 Extracts payment instructions from client emails (exported to CSV) into a structured payment table, using OpenRouter for the LLM call, Pydantic for validation, and pandas for I/O. Each row in the output is one payment.
 
-The extracted account details are checked against our own records in Stage 2 (hold/release check, described at the end), to decide which payments can go through and which must be held for a call-back. Stage 3 loads the checked rows into a Snowflake payment queue, also described at the end.
+The extracted account details are checked against our own records in Stage 2 (hold/release check, described at the end), to decide which payments can go through and which must be held for a call-back. Stage 3 loads the checked rows into a Snowflake payment queue, also described at the end. Stage 4 is a review page where an analyst pastes one email and sees whether the payment is held or ready.
 
 ## Files
 
@@ -345,3 +345,131 @@ After the commit, the Snowflake counts by disposition and hold reason matched th
 ## Limitations
 
 The queue is loaded but nothing reads it yet, because the review page comes later. The load is not repeatable by design: running the script again will refuse to insert, and correcting or removing rows needs someone with more privileges than the loader role.
+
+
+---
+
+# Stage 4: Payment review page
+
+An analyst pastes in one client email. The page runs it through the same extraction, hold rules and queue mapping as the batch pipeline, then shows the payment details, whether it is `held` or `ready`, the reason, and its row in the queue. Its purpose is to let a person catch a risky bank change before money moves.
+
+## Screenshot
+
+> **TODO: add the screenshot.** Save it as `docs/review_page_EM-00311.png` and replace this note with the image line below. It should show EM-00311 (Briarwood Furniture, "FW: Urgent payroll account correction") held, with the reason visible, and no credentials in the frame.
+
+![EM-00311 held for a bank detail change](docs/review_page_EM-00311.png)
+
+## Files
+
+| File | Purpose |
+|---|---|
+| `review_page.py` | The Streamlit page |
+| `review_pipeline.py` | The shared logic, so the page and the holdout check run exactly the same code (reuses `email_parser.py`, `hold_release_check.py` and `load_queue.py`) |
+| `check_holdout.py` | Runs the pipeline over every holdout email and compares it with the answer key |
+| `holdout_check.csv` | Output of the holdout check: one row per email, a match flag per field |
+
+`load_queue.py` has one small change: `map_rows` takes an optional `strict_email_id_range` flag so the page can show an email ID outside EM-00001..EM-00300. The loader never sets it, and its `--dry-run` output was unchanged by the edit.
+
+## How to run
+
+```bash
+pip install streamlit
+streamlit run review_page.py          # the review page
+python check_holdout.py --limit 5     # trial run of the holdout check
+python check_holdout.py               # all holdout emails
+```
+
+Extraction needs `OPENROUTER_API_KEY` and `OPENROUTER_MODEL`. The three `SNOWFLAKE_*` variables are optional: they only let the page look up the email's row in the queue. All of them can go in the environment or in `.env`, which must stay out of git.
+
+## What the page shows
+
+1. A **HELD** or **READY** banner with the queue hold reason in plain English. READY appears only if all six rules pass and the queue row is also `ready`.
+2. The extracted payment: payee, amount, currency, payment date (or "not stated"), account number, sort code and reference.
+3. The account comparison: the instructed account, the prior (replaced) account and the account on file, in monospace, with `^` markers under the characters where the instructed and prior accounts differ. The on-file bank, currency, last verified date and call-back contact are listed too.
+4. The six hold rules as a pass/fail checklist, with a one-line explanation for each failure.
+5. The queue row. If an email ID is given, the page reads it from the queue (read-only) and shows every row found. If there is none, it shows the row the loader would write, labelled "not in the queue". An ID outside EM-00001..EM-00300 still shows its row, with a warning that the loader would refuse it.
+6. Signals, for information only (they never change the verdict): a warning when the sender's domain differs from the domain on a quoted `From:` line, and a note when the on-file client name differs from the name on the email.
+7. The raw model output, for audit.
+
+An email with more than one payment gets one tab per payment.
+
+## Safeguards
+
+- **The verdict comes from code, not the model.** The pasted email goes only into the user message to the model, and the verdict is decided by the hold rules and the queue mapping.
+- **It fails closed.** If extraction fails, the model output is unusable, the accounts file cannot be loaded or anything else errors, the page shows HELD with the error and never READY. If Snowflake is unreachable the page says so and still shows the verdict and the proposed row, because the verdict never depends on Snowflake.
+- **Read-only.** The page only runs a SELECT on the queue and never inserts, updates or deletes.
+- **Email text is shown as plain text.** Extracted values go into tables and code blocks, never into HTML, so nothing in an email can inject markup.
+- **No credentials on the page.** Environment values are removed from any error text before it is shown, and the script warns if `.env` is not in `.gitignore`.
+- **The answer key stays out.** The page loads the holdout file without its `gold_*` columns, so it can never read them or pass them to the model.
+
+## The prompt
+
+This is the prompt the review page and holdout check were built from:
+
+````
+Build the payment review page: a Streamlit app, `review_page.py`, where an analyst pastes in one client email and sees whether the payment is held or ready, and why. Also write `check_holdout.py` (described below). Do not change `README.md`.
+
+CONTEXT
+This reuses everything built so far: `email_parser.py` (LLM extraction through OpenRouter), `hold_release_check.py` (the six hold rules as a Great Expectations contract, against `data\Client Settlement Accounts on File.xlsx`, joined on Client ID), and `load_queue.py` (the mapping to the Snowflake queue row). Import and reuse their functions so the page behaves exactly like the batch pipeline. Do not copy the logic. If something cannot be imported without side effects, make the smallest change and tell me. The batch scripts' behaviour must not change: confirm that `python load_queue.py --dry-run` still produces an identical `queue_rows_preview.csv`.
+
+The holdout emails are in the holdout CSV in `data\` (named like "Holdout client payment emails, 17 Nov to 14 Dec 2026"). Read it first and tell me the columns, the row count and which file you used. Its gold_* columns are the answer key. The page itself must never read them or feed them to the model.
+
+THE PAGE
+Inputs: client ID, received at (needed to resolve relative dates), sender email, subject, email body, and an optional email ID. Detect whether the body contains a quoted earlier message (for example "-----Original Message-----", "Forwarded message" or a quoted "From:" line), with a checkbox to override. Add a "load example" dropdown that fills the form from a holdout row, so I can load EM-00311.
+
+On submit, run the extractor, then the hold rules, then the queue mapping, and show:
+1. A verdict banner: HELD or READY, with the single queue HOLD_REASON in plain English. Show READY only if all six rules pass.
+2. The extracted payment: payee, amount and currency, payment date (or "not stated"), account number, sort code, reference.
+3. The account comparison: the instructed account, the prior (replaced) account, and the account on file for that client (bank, currency, last verified, call-back contact). Show account numbers as exact monospace text and highlight the characters where the instructed and prior accounts differ.
+4. The six rules as a pass/fail checklist, each failure with a one-line explanation.
+5. The queue row for this payment. If an EMAIL_ID was given, SELECT it from PAYMENTS_OPS.PAYMENT_QUEUE.PAYMENT_INSTRUCTION_QUEUE and show every row found (an email can have two payments). If none exists, show the row the loader would write, clearly labelled "not in the queue". If the EMAIL_ID is outside EM-00001..EM-00300 (EM-00311 is), still show that row, with a visible warning that the loader would refuse this ID. Never hide it.
+6. A signals section, display only (it must never change HELD or READY): a warning when the sender's email domain differs from the domain on a "From:" address in the quoted thread, and an informational note when the on-file client name differs from the client name in the email.
+7. An expander with the raw model output for audit.
+
+SAFETY
+- The page only reads from Snowflake. It never inserts, updates or deletes, and it uses the existing PAYMENTS_OPS_LOADER role with SELECT statements only.
+- Fail closed. If extraction fails, the model output is unusable, the accounts file will not load or anything else errors, show HELD or an error and never READY. If Snowflake is unreachable, say so and still show the verdict and the proposed row. The verdict never depends on Snowflake.
+- Treat the pasted email as untrusted. It goes only in the user message to the model, and the verdict comes from the code rules, never from model text. Never render email text as HTML (no unsafe_allow_html on email content).
+- Read OPENROUTER_API_KEY, OPENROUTER_MODEL and SNOWFLAKE_ACCOUNT, SNOWFLAKE_USER, SNOWFLAKE_PASSWORD from the environment or `.env`. Never print, log or display them, including inside error messages. Check that `.env` is gitignored and tell me if it is not.
+
+CHECK AGAINST THE HOLDOUT
+Write `check_holdout.py`, which runs the same extraction, hold and queue-mapping functions over every holdout row (with a `--limit` option) and compares the results with the gold_* columns: payee_name, payment_date, amount, currency, account_number, bank_detail_change and disposition. Write `holdout_check.csv` with one row per email and a match flag per field, and print the agreement rate for each field plus every disagreement. Flag disagreements and do not tune the extraction prompt to fit the gold answers.
+
+PROCESS
+1. Read the existing scripts and the holdout CSV, tell me what you found, and say which functions you will reuse.
+2. Build the page and run it.
+3. Run `check_holdout.py` and show me the disagreements.
+4. Load EM-00311 (Briarwood Furniture, "FW: Urgent payroll account correction") into the page and confirm it shows HELD, with a bank detail change as the reason, the new account (ending 9268 73) next to the prior account in the quoted thread (ending 9268 19), and the sender domain warning. If you can run a headless browser, save a screenshot as `docs/review_page_EM-00311.png`. Otherwise tell me exactly how to run the page and capture it. Check that the screenshot shows no credentials.
+5. Report what you built, what you reused, anything you were unsure about.
+````
+
+## Holdout check
+
+`check_holdout.py` runs the same extraction, hold and queue-mapping functions over every holdout email and compares them with the `gold_*` answer key for payee, date, amount, currency, account number, bank detail change and disposition. Only the email columns reach the model. Disagreements are reported, not fixed, and the extraction prompt is not tuned to the gold answers.
+
+One extra column, `prior_account_present`, asks only whether the email itself names a replaced account. It is compared with `gold_bank_detail_change` separately, because the queue's `BANK_DETAIL_CHANGE` means "differs from the account on file" and is true for every row while the on-file sheet does not overlap our emails (see the Stage 2 data notes).
+
+### Results
+
+
+| Field | Agreement |
+|---|---|
+| `payee_name` | 59 / 60 |
+| `payment_date` | 60 / 60 |
+| `amount` | 60 / 60 |
+| `currency` | 60 / 60 |
+| `account_number` | 58 / 60 |
+| `bank_detail_change` | 9 / 60 |
+| `disposition` | 10 / 60 |
+| `prior_account_present` vs `gold_bank_detail_change` | 55 / 60 |
+
+
+## Data notes
+
+- **EM-00311 is outside the queue's ID range.** The queue table documents IDs EM-00001..EM-00300 and the loader would refuse EM-00311, so it is not in the queue. The page shows the row it would write, with a warning.
+- **The page also shows account and currency mismatches** for EM-00311, because the on-file sheet does not match our emails (Stage 2). The bank detail change is the reason that leads.
+- **The sender domain signal is new.** Our earlier pipeline did not look at the sender. EM-00311 came from a hyphenated domain while the quoted original came from an unhyphenated one, which the page flags.
+
+## Limitations
+
+The page and the holdout check were tested with a mocked extractor, a mocked Snowflake connection and a small fixture accounts sheet, so the results above are the only evidence of how the model performs on the real holdout emails. The page does not write to the queue, and nothing in this stage changes how the batch loader behaves.

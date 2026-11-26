@@ -125,8 +125,12 @@ def parse_date(raw: str):
 # --------------------------------------------------------------------------
 # Mapping and validation
 # --------------------------------------------------------------------------
-def map_rows(df: pd.DataFrame, run_id: str):
-    """Return (rows, findings, fatal, rows_with_unmapped_codes)."""
+def map_rows(df: pd.DataFrame, run_id: str, strict_email_id_range: bool = True):
+    """Return (rows, findings, fatal, rows_with_unmapped_codes).
+
+    strict_email_id_range=False lets the review page map an EMAIL_ID outside
+    EM-00001..EM-00300 (the format is still checked). The loader never sets it.
+    """
     rows, findings, fatal = [], [], []
     unmapped_rows = 0
 
@@ -137,7 +141,7 @@ def map_rows(df: pd.DataFrame, run_id: str):
         seq = clean(rec.get("payment_seq"))
 
         m = re.fullmatch(r"EM-(\d{5})", email_id or "")
-        if not (m and 1 <= int(m.group(1)) <= 300):
+        if not (m and (not strict_email_id_range or 1 <= int(m.group(1)) <= 300)):
             fatal.append(f"{where}: EMAIL_ID {email_id!r} is not EM-00001..EM-00300")
             continue
         m = re.fullmatch(r"CL-(\d{4})", client_id or "")
